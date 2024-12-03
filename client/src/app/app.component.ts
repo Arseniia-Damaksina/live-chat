@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { HttpService } from './services/http.service';
+import { Observable } from 'rxjs';
+
+interface Message {
+  message: string
+}
 
 @Component({
   selector: 'app-root',
@@ -7,5 +13,9 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class AppComponent {
-  title = 'client';
+
+
+  value: Observable<any> = this.httpService.getConnection();
+
+  constructor(private httpService: HttpService) {}
 }

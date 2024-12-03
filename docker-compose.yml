@@ -24,10 +24,10 @@ services:
       dockerfile: Dockerfile
       context: ./client
       target: development
-    command: npm run start
     volumes:
       - ./client:/live-chat_fe/src
       - /live-chat_fe/src/node_modules
+    command: npm run start
     ports:
       - "4200:4200"
 
