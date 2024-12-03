@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+      target: development
+    volumes:
+      - ./server:/live-chat_be/src
+      - /live-chat_be/src/node_modules
+    command: npm run start:dev
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/db
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "3000:3000"
+
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+      target: development
+    volumes:
+      - ./client:/live-chat_fe/src
+      - /live-chat_fe/src/node_modules
+    command: npm run start
+    ports:
+      - "4200:4200"
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db
+    ports:
+      - "5432:5432"
