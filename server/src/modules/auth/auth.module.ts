@@ -21,6 +21,7 @@ import { userProviders } from '../../providers/user.providers';
     DatabaseModule
   ],
   providers: [AuthService, JwtStrategy, UserService, ...userProviders,],
+  exports: [AuthService],
   controllers: [AuthController]
 })
 export class AuthModule {}

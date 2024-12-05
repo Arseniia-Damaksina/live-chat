@@ -67,4 +67,9 @@ export class AuthService {
 
     return await this.generateUserWithTokenResponseDto(userResponse);
   }
+
+  verifyJwt(jwt:string): Promise<any>{
+    return this.jwtService.verifyAsync(jwt);
+  }
+
 }
