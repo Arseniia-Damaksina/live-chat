@@ -1,0 +1,85 @@
+<div class="w-full h-full flex flex-col justify-center items-center m-10">
+  <div>
+    <div>
+      <a [routerLink]="['../login']">Go to Login</a>
+    </div>
+    <div>
+      <form
+        [formGroup]="form"
+        (ngSubmit)="register()"
+        class="flex flex-col justify-start items-start m-10"
+      >
+        <div class="flex flex-col justify-center items-start my-2">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="border"
+          />
+          <div *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']" class="text-red-600"
+              >Email is required</span
+            >
+            <span *ngIf="email?.errors?.['email']" class="text-red-600"
+              >Invalid email format</span
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-start my-2">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            class="border"
+          />
+          <div *ngIf="username?.invalid && username?.touched">
+            <span *ngIf="username?.errors?.['required']" class="text-red-600"
+              >Username is required</span
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-start my-2">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="border"
+          />
+          <div *ngIf="password?.invalid && password?.touched">
+            <span *ngIf="password?.errors?.['required']" class="text-red-600"
+              >Password is required</span
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-start my-2">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            class="border"
+          />
+          <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched">
+            <span
+              *ngIf="confirmPassword?.errors?.['required']"
+              class="text-red-600"
+              >Confirm password is required</span
+            >
+          </div>
+        </div>
+
+        <div *ngIf="form.errors?.['passwordsDoNotMatch']">
+          <span class="text-red-600">Passwords do not match!</span>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid" class="p-2 bg-black text-white">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
