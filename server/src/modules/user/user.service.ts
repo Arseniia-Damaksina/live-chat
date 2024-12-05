@@ -75,7 +75,12 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async login() {
-    
+  async findUserByEmail(email: string): Promise<UserResponseDto> {
+    const user = await this.userRepository
+    .createQueryBuilder('user')
+    .addSelect('user.password')
+    .where('user.email = :email', { email })
+    .getOne();
+    return user;
   }
 }

@@ -17,7 +17,4 @@ export class UserController {
     async getAllUsers(): Promise<UserResponseDto[]> {
         return await this.userService.findAllUsers();
     }
-
-    @Post()
-    login() {}
 }
